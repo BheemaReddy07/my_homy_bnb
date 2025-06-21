@@ -107,7 +107,7 @@ export default function BecomeaHostComponent() {
                 {
                     categories.map(each => {
                         return <div onClick={() => setCustomValue('category', each.label)} className={cn("flex flex-col p-5 rounded-lg border-2 border-gray-300/20 text-semibold cursor-pointer ",
-                            category == each.label ? "bg-red-400/80 text-white" : "bg-gray-100"
+                            category == each.label ? "bg-blue-400/80 text-white" : "bg-gray-100"
 
                         )}>
                             <each.icon />
@@ -218,14 +218,14 @@ export default function BecomeaHostComponent() {
             </div>
             <div>
                 <div className="flex flex-row justify-between px-8  py-4">
-                    <button onClick={onBack} className="bg-red-400 rounded-full text-white p-4 cursor-pointer">
+                    <button onClick={onBack} className="bg-blue-400 rounded-full text-white p-4 cursor-pointer">
                         <ArrowLeft />
                     </button>
-                    <button onClick={handleSubmit(onNext)} className="bg-red-400 rounded-full text-white p-4 cursor-pointer disabled:bg-gray-400" disabled={!isStepValid}>
+                    <button onClick={handleSubmit(onNext)} className="bg-blue-400 rounded-full text-white p-4 cursor-pointer disabled:bg-gray-400" disabled={!isStepValid}>
                         {nextLabel}
                     </button>
                 </div>
-                <div className="progress-bar bg-red-400 h-2  rounded-r-full"
+                <div className="progress-bar bg-blue-400 h-2  rounded-r-full bottom-0 fixed"
                     style={{ width: `${((step + 1) / Object.keys(STEPS).length) * 100}%` }}
                 ></div>
             </div>
