@@ -1,7 +1,13 @@
+import CategoryHandler from "@/components/category-handler";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home({searchParams}) {
+
+
   return (
-   <div>Landing Page</div>
+   <section >
+    <CategoryHandler />
+
+   </section>
   );
 }
