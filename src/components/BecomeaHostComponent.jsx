@@ -14,7 +14,6 @@ import { Textarea } from "./ui/textarea"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import axios from "axios"
 import { toast } from "@/hooks/use-toast";
-import useCountries from "@/hooks/useCountries";
 
 const STEPS = {
     CATEGORY: 0,
