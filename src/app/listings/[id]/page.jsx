@@ -39,11 +39,11 @@ export default async function SingleListingPage({ params }) {
                         </span>
                         <span className="p-3 px-5 bg-blue-200/40 rounded-lg font-semibold flex flex-col items-center">
                             <House />
-                            Guests: {data.roomCount}
+                            Rooms: {data.roomCount}
                         </span>
                         <span className="p-3 px-5 bg-blue-200/40 rounded-lg font-semibold flex flex-col items-center">
                             <Baby />
-                            Guests: {data.childCount}
+                            Children: {data.childCount}
                         </span>
                     </div>
                     <hr />
@@ -70,7 +70,7 @@ export default async function SingleListingPage({ params }) {
                 <div className="right col-span-5 lg:col-span-2">
                     <div className="bg-gray-100 p-5 rounded-lg">
                         <span className="flex gap-1 items-center"><IndianRupee /> <span className="text-xl font-bold">{data.price}</span> /night</span>
-                        <ReservationComponent />
+                        <ReservationComponent listingId={data.id} pricePerDay={data.price} reservations={reservations} />
                     </div>
                 </div>
             </div>
