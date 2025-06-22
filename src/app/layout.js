@@ -9,7 +9,7 @@ export const metadata = {
   title: "My Homy",
   description: "Find your perfect stay with My Homy — a modern  platform to explore unique homes, book vacation rentals, and become a host. Experience comfort, flexibility, and smart travel planning all in one place.",
   icons:{
-    icon:""
+    icon:"/globe.svg"
   }
 }
 

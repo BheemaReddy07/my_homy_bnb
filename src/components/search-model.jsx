@@ -97,13 +97,19 @@ function Searchmodel({ isOpen, setIsOpen, stepAt }) {
 
             if(Object.keys(trackOfQueryParams).length === 0) return;
 
-            const queryString = Object.keys(trackOfQueryParams).map(key =>`${encodeURIComponent(key)}=${encodeURIComponent(trackOfQueryParams[key])}`).join("&")
+          //  const queryString = Object.keys(trackOfQueryParams).map(key =>`${encodeURIComponent(key)}=${encodeURIComponent(trackOfQueryParams[key])}`).join("&")
 
             const params = new URLSearchParams(searchParams.toString());
             const tempCat = params.get('cat');
             if(tempCat) params.set('cat',tempCat)
             
-            const url = `/?${queryString}`
+
+           // const url = `/?${queryString}`
+
+           Object.entries(trackOfQueryParams).forEach(([key,value])=>{
+            params.set(key,value);
+           })
+           const url = `/?${params.toString()}`
             setIsOpen(false)
             router.push(url);
         }
