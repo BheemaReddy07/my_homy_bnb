@@ -28,7 +28,7 @@ export default async function Home({ searchParams }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 md:p-8">
         {
           listings.map(listing =>{
-            return <ListingsCard />
+            return <ListingsCard key={listing.id} user={user} listing={listing} />
           })
         }
       </div>
