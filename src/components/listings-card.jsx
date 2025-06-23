@@ -4,8 +4,9 @@ import { IndianRupee } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
+import formatMoney from "@/utils/formatMoney";
 
-export default function ListingsCard({ user, listing , }) {
+export default function ListingsCard({ user, reservationsData, listing, showSecondaryBtn = false, secondaryBtnLabel, onAction }) {
     const { getByValue } = useCountries();
     const router = useRouter();
     const countryDetails = getByValue(listing.locationValue)
@@ -14,12 +15,20 @@ export default function ListingsCard({ user, listing , }) {
             <Image className="object-cover w-full h-full rounded-lg" src={listing.imageSrc} width={400} height={400} alt="property lisiting" />
         </div>
         <p className="font-semibold text-lg md:text-2xl capitalize pt-2">{listing.title}</p>
-         <p className="text-lg flex gap-1 items-center"><IndianRupee size={16} />{listing.price} per Night</p>
+        {reservationsData
+            ?
+            <p>Paid {formatMoney(reservationsData.totalPrice)} rupees</p>
+            :
+            <p className="text-lg flex gap-1 items-center"><IndianRupee size={16} />  {listing.price} per Night</p>
+        }
         <div className="text-gray-400">
             {countryDetails.label},&nbsp;
             {countryDetails.region}
         </div>
-        <Button className="cursor-pointer" onClick={()=>router.push(`/listings/${listing.id}`)}>View Property</Button>
+        <div className="flex flex-row gap-2">
+            <Button className="cursor-pointer" onClick={() => router.push(`/listings/${listing.id}`)}>View Property</Button>
+            {showSecondaryBtn && <Button variant="destructive" className="cursor-pointer" onClick={onAction}>{secondaryBtnLabel}</Button>}
 
+        </div>
     </div>
 }
