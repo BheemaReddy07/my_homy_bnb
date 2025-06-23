@@ -5,8 +5,10 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import formatMoney from "@/utils/formatMoney";
+import Favourite from "./favourite-btn";
 
 export default function ListingsCard({ user, reservationsData, listing, showSecondaryBtn = false, secondaryBtnLabel, onAction }) {
+    
     const { getByValue } = useCountries();
     const router = useRouter();
     const countryDetails = getByValue(listing.locationValue)
@@ -14,6 +16,7 @@ export default function ListingsCard({ user, reservationsData, listing, showSeco
         <div className="w-full aspect-square rounded-lg">
             <Image className="object-cover w-full h-full rounded-lg" src={listing.imageSrc} width={400} height={400} alt="property lisiting" />
         </div>
+        <Favourite className="absolute top-6 right-6" listingId={listing.id} user={user} />
         <p className="font-semibold text-lg md:text-2xl capitalize pt-2">{listing.title}</p>
         {reservationsData
             ?

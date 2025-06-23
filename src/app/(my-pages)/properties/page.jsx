@@ -1,3 +1,4 @@
+import { getUser } from "@/app/actions/getUser";
 import EmptyPage from "@/components/emptyPage";
 import PropertyBox from "@/components/propertyBox";
 import { getAuthSession } from "@/utils/auth"
@@ -6,6 +7,7 @@ import { notFound } from "next/navigation"
 
 async function Properties() {
     const session = await getAuthSession()
+    const user = await getUser();
     if (!session) {
         notFound();
     }
@@ -22,7 +24,7 @@ async function Properties() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {
                     propertyList.map((each) => {
-                        return <PropertyBox key={each.id} each={each} />
+                        return <PropertyBox key={each.id} each={each} user={user} />
                     })
                 }
 

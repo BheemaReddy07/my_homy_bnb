@@ -5,7 +5,7 @@ import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import ListingsCard from "./listings-card";
 
-function PropertyBox({ each }) {
+function PropertyBox({ each ,user }) {
     const router = useRouter();
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -19,7 +19,7 @@ function PropertyBox({ each }) {
     }
 
     return (
-        <ListingsCard listing={each} showSecondaryBtn secondaryBtnLabel={"Delete this Property"} onAction={handleDelete} />
+        <ListingsCard listing={each} user={user} showSecondaryBtn secondaryBtnLabel={"Delete this Property"} onAction={handleDelete} />
 
     )
 }

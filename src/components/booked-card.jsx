@@ -5,8 +5,8 @@ import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation"
 import ListingsCard from "./listings-card";
 
-function BookedCard({resv}){
-    console.log(resv ,"reservations")
+function BookedCard({resv,user}){
+     
     const router = useRouter();
     const cancelReservation = async (e) =>{
         e.preventDefault();
@@ -21,6 +21,7 @@ function BookedCard({resv}){
     return(
         <div>
             <ListingsCard 
+            user={user}
             reservationsData = {resv}
             listing={resv.listing}
             showSecondaryBtn={true}

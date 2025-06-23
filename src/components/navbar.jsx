@@ -53,7 +53,7 @@ const UserComponent = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuItem><Link href="/bookings">My Bookings</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/favorites">My Favorites</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/favourites">My Favourites</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link href="/properties">My Properties</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Airbnb your home</DropdownMenuItem>
