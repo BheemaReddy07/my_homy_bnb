@@ -9,7 +9,7 @@ import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns'
 import { setReservation } from "@/app/actions/reservation"
 import { toast } from '@/hooks/use-toast'
 
-function ReservationComponent({ listingId, pricePerDay, reservations }) {
+function ReservationComponent({ user, listingId, pricePerDay, reservations }) {
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),
         endDate: new Date(),
@@ -46,7 +46,15 @@ function ReservationComponent({ listingId, pricePerDay, reservations }) {
     }, [pricePerDay, dateRange])
 
     async function handleReservation() {
-        console.log("button clicked")
+        if (!user) {
+            toast({
+                title: "sign in required",
+                description: "Please sign in to make a reservation",
+                variant: "destructive"
+            });
+            router.push('/sign-in');
+            return;
+        }
         try {
             const res = await setReservation({ listingId, startDate: dateRange.startDate, endDate: dateRange.endDate, price: totalPrice })
             if (res.ok) {

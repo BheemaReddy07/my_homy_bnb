@@ -6,7 +6,6 @@ function Favourite({ listingId, user, className, props }) {
     
     const { isFavourite, toggleFavourite } = useFavourite({ listingId: listingId, user: user })
     const color = isFavourite ? 'red' : "black"
-    console.log(toggleFavourite)
     return (
         <div onClick={toggleFavourite} className={cn('classname of my own', className)}>
             <svg

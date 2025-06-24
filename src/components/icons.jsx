@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 
 export const Icons = {
     logo: (props) => (
@@ -48,5 +49,6 @@ export const Icons = {
           d="M8.14 3.77a3.84 3.84 0 0 1 2.7 1.05l2.01-1.999a6.8 6.8 0 0 0-4.71-1.82 7.04 7.04 0 0 0-6.29 3.858L4.186 6.66c.556-1.658 2.116-2.89 3.952-2.89z"
         />
       </svg>
-    )
+    ),
+    spinner : Loader2
 }

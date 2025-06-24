@@ -2,8 +2,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { getAuthSession } from "@/utils/auth";
-import { Toaster } from "@/components/ui/sonner"
-import { icons } from "lucide-react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "My Homy",
@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
       <body className={` antialiased`}>
         <Navbar />
         {children}
-        <Toaster />
+        <ToastContainer />
       </body>
     </html>
   );

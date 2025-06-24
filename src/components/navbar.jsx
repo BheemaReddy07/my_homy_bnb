@@ -5,13 +5,27 @@ import Link from "next/link";
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Searchmodel from "./search-model";
+import SignOut from "./signOut";
+import { getUser } from "@/app/actions/getUser";
 
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const [modalStateStep, setModalStateStep] = useState(-1)
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const currentUser = await getUser();
+            setUser(currentUser);
+        }
+        fetchUser()
+        const intervalId = setInterval(fetchUser, 5000);
+
+        return () => clearInterval(intervalId);
+    }, [])
+
 
     const openSearchModalAtStep = (step) => {
         if (!isOpen) {
@@ -36,7 +50,7 @@ export default function Navbar() {
                 <div className="bg-blue-400 text-white  p-2 rounded-full cursor-pointer hover:scale-105 transition-all duration-300 delay-100" onClick={() => openSearchModalAtStep(0)}><Search /></div>
             </div>
             <div>
-                <UserComponent />
+                <UserComponent user={user} />
             </div>
             <Searchmodel key={modalStateStep} isOpen={isOpen} setIsOpen={setIsOpen} stepAt={modalStateStep} />
         </div>
@@ -44,20 +58,31 @@ export default function Navbar() {
 }
 
 
-const UserComponent = () => {
+const UserComponent = ({ user }) => {
     return (
 
         <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
                 <CircleUserRound className="text-blue-500 size-8" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            {user ? (<DropdownMenuContent>
                 <DropdownMenuItem><Link href="/bookings">My Bookings</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link href="/favourites">My Favourites</Link></DropdownMenuItem>
                 <DropdownMenuItem><Link href="/properties">My Properties</Link></DropdownMenuItem>
+                <DropdownMenuItem> <Link href="/become-a-host">Add property</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Airbnb your home</DropdownMenuItem>
-            </DropdownMenuContent>
+                <DropdownMenuItem> <SignOut /></DropdownMenuItem>
+            </DropdownMenuContent>)
+                :
+                (<DropdownMenuContent>
+                    <DropdownMenuItem>
+                        <Link href="sign-in">
+                            Sign In
+                        </Link>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>)
+
+            }
         </DropdownMenu>
     )
 }

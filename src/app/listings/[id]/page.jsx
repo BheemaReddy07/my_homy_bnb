@@ -1,5 +1,6 @@
 import getListingById from "@/app/actions/getListingById";
 import { getReservationsById } from "@/app/actions/getReservationsById";
+import { getUser } from "@/app/actions/getUser";
 import ReservationComponent from "@/components/reservation-comp";
 import useCountries from "@/hooks/useCountries";
 import { categories } from "@/static/config";
@@ -8,6 +9,7 @@ import Image from "next/image";
 
 export default async function SingleListingPage({ params }) {
     const { id } = await params;
+    const user  = await getUser();
     const data = await getListingById(id);
     const reservations = await getReservationsById(id);
     const { getByValue } = useCountries();
@@ -70,7 +72,7 @@ export default async function SingleListingPage({ params }) {
                 <div className="right col-span-5 lg:col-span-2">
                     <div className="bg-gray-100 p-5 rounded-lg">
                         <span className="flex gap-1 items-center"><IndianRupee /> <span className="text-xl font-bold">{data.price}</span> /night</span>
-                        <ReservationComponent listingId={data.id} pricePerDay={data.price} reservations={reservations} />
+                        <ReservationComponent user={user} listingId={data.id} pricePerDay={data.price} reservations={reservations} />
                     </div>
                 </div>
             </div>

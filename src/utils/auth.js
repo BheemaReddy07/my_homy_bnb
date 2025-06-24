@@ -22,47 +22,53 @@ export const authOptions = {
                 if (!credentials.email || !credentials.password) {
                     throw new Error("Invalid Credentials")
                 }
-                console.log(credentials, "credentials from auth js")
                 const user = await prisma.user.findUnique({
-                    where:{
-                        email:credentials.email
+                    where: {
+                        email: credentials.email
                     }
                 })
-                if(!user || !user?.hashedPassword){
-                    throw new Error("User not found")
+                if (!user) {
+                throw new Error("User not found");
+                }
+
+                if (!user.hashedPassword) {
+
+                    throw new Error("Invalid credentials");
                 }
                 const isCorrectPassword = await compare(
                     credentials.password,
                     user.hashedPassword
                 )
 
-                if(!isCorrectPassword){
+                if (!isCorrectPassword) {
+
                     throw new Error("Invalid Credentials")
                 }
+
                 return user;
             }
         })
     ],
-    pages:{
-        signIn:"/"
+    pages: {
+        signIn: "/"
     },
-    session:{
-        strategy:"jwt",
+    session: {
+        strategy: "jwt",
     },
-    secret:process.env.NEXTAUTH_SECRET,
-    callbacks:{
-        async session({session,token}){
-            if(token){
+    secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+        async session({ session, token }) {
+            if (token) {
                 session.user.id = token.id
             }
             return session;
         },
-        async jwt({token,user}){
-            if(user){
+        async jwt({ token, user }) {
+            if (user) {
                 token.id = user.id,
-                token.email = user.email,
-                token.name = user.name,
-                token.image = user.image
+                    token.email = user.email,
+                    token.name = user.name,
+                    token.image = user.image
             }
             return token
         }
