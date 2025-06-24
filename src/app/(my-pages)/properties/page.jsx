@@ -14,14 +14,14 @@ async function Properties() {
     const propertyList = await prisma.listing.findMany({
         where: { userId: session.user.id }
     })
-    if (!propertyList) {
-        return <EmptyPage title="No propertie added so far" linkText="Add yours today" link="/become-a-host" />
+    if (propertyList.length == 0) {
+        return <EmptyPage title="No properties added so far" linkText="Add yours today" link="/become-a-host" />
     }
 
     return (
         <div className="p-4 md:p-8 space-y-5">
             <h1 className="text-3xl font-semibold ">Your Properties</h1>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {
                     propertyList.map((each) => {
                         return <PropertyBox key={each.id} each={each} user={user} />

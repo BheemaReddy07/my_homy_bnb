@@ -17,7 +17,7 @@ function CategoryHandler() {
     }
 
     return (
-        <div className="w-full flex justify-evenly gap-3 py-2 px-8 border-b border-gray-100 overflow-x-auto">
+        <div className="w-full flex justify-evenly gap-3 py-2 px-8 border-b-2 border-gray-100 overflow-x-auto">
 
             {categories.map(cat => {
                 return <div onClick={() => setCategory(cat.label)} key={cat.label}

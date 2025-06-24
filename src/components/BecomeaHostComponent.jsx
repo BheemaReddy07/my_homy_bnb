@@ -99,7 +99,7 @@ export default function BecomeaHostComponent() {
     })
 
     let sourceAtStep = (
-        <div className="flex flex-col gap-3">
+        <div className="p-4 md:p-0 flex flex-col gap-3">
             <h1 className="text-lg  md:text-xl font-semibold  text-gray-600">Which of these categories does define your Property</h1>
             <p className="text-gray-500">Pick a Category</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">

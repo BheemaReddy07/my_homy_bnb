@@ -19,7 +19,7 @@ function PropertyBox({ each ,user }) {
     }
 
     return (
-        <ListingsCard listing={each} user={user} showSecondaryBtn secondaryBtnLabel={"Delete this Property"} onAction={handleDelete} />
+        <ListingsCard  listing={each} user={user} showSecondaryBtn secondaryBtnLabel={"Delete this Property"} onAction={handleDelete} />
 
     )
 }

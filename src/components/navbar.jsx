@@ -21,7 +21,7 @@ export default function Navbar() {
             setUser(currentUser);
         }
         fetchUser()
-        const intervalId = setInterval(fetchUser, 5000);
+        const intervalId = setInterval(fetchUser, 3000);
 
         return () => clearInterval(intervalId);
     }, [])
@@ -41,15 +41,19 @@ export default function Navbar() {
                 <HousePlus className="text-blue-400 md:size-8 size-6" />
                 <span className="text-blue-500 text-md md:text-xl font-extrabold">My Homy</span>
             </Link>
-            <div className="hidden md:flex items-center gap-2 bg-white px-[6px] py-[4px] border-2 border-gray-300 rounded-full">
+
+            <div className="hidden md:flex justify-center items-center gap-2 bg-white px-[6px] py-[4px] border-2 border-gray-300 rounded-full">
                 <div className="hover:bg-gray-200 transition-all duration-200 delay-100 hover:scale-100 rounded-full cursor-pointer px-3 py-1" onClick={() => openSearchModalAtStep(0)}>Locations</div>
                 <div className="w-[0.6px] h-[20px] bg-gray-300"></div>
                 <div className="hover:bg-gray-200 transition-all duration-200 delay-100 hover:scale-100 rounded-full cursor-pointer px-3 py-1" onClick={() => openSearchModalAtStep(1)}>Date</div>
                 <div className="w-[0.6px] h-[20px] bg-gray-300"></div>
                 <div className="hover:bg-gray-200 transition-all duration-200 delay-100 hover:scale-100 rounded-full cursor-pointer px-3 py-1" onClick={() => openSearchModalAtStep(2)}>Details</div>
-                <div className="bg-blue-400 text-white  p-2 rounded-full cursor-pointer hover:scale-105 transition-all duration-300 delay-100" onClick={() => openSearchModalAtStep(0)}><Search /></div>
+                <div className="bg-blue-400 text-white p-2 rounded-full cursor-pointer hover:scale-105 transition-all duration-300 delay-100" onClick={() => openSearchModalAtStep(0)}><Search /></div>
             </div>
-            <div>
+            
+
+            <div className="flex gap-4">
+                <div className= "bg-blue-400 md:hidden text-white p-2 rounded-full cursor-pointer hover:scale-105 transition-all duration-300 delay-100" onClick={() => openSearchModalAtStep(0)}><Search /></div>
                 <UserComponent user={user} />
             </div>
             <Searchmodel key={modalStateStep} isOpen={isOpen} setIsOpen={setIsOpen} stepAt={modalStateStep} />
@@ -63,7 +67,7 @@ const UserComponent = ({ user }) => {
 
         <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
-                <CircleUserRound className="text-blue-500 size-8" />
+                <CircleUserRound className="text-blue-500 size-9 md:size-8" />
             </DropdownMenuTrigger>
             {user ? (<DropdownMenuContent>
                 <DropdownMenuItem><Link href="/bookings">My Bookings</Link></DropdownMenuItem>

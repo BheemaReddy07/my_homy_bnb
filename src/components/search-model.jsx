@@ -122,9 +122,9 @@ function Searchmodel({ isOpen, setIsOpen, stepAt }) {
         <>
             {
                 isOpen ? (
-                    <div className='fixed top-0 left-0 w-full h-screen'>
+                    <div className='z-1000 fixed top-0 left-0 w-full h-screen'>
                         <div className="w-full relative h-screen bg-black/40">
-                            <div className='modal_content absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-full md:w-3/5 mini-h-[300px] p-5 rounded-lg shadow'>
+                            <div className='modal_content absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-full md:w-3/5 min-h-[300px] p-5 rounded-lg shadow'>
                                 {sourceToReturn[step]}
                                 <X onClick={() => setIsOpen(false)} className='float-right absolute top-4 right-4 cursor-pointer' />
                                 <div className='w-full flex justify-between pt-5'>

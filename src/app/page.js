@@ -25,10 +25,10 @@ export default async function Home({ searchParams }) {
   return (
     <section >
       <CategoryHandler />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 md:p-8">
+      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 md:p-8">
         {
           listings.map(listing =>{
-            return <ListingsCard key={listing.id} user={user} listing={listing} />
+            return <ListingsCard  key={listing.id} user={user} listing={listing} />
           })
         }
       </div>
